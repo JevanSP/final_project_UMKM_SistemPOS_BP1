@@ -40,7 +40,7 @@ public class AdminView {
         Button btnTambah = new Button("Tambah Baru");
         btnTambah.setOnAction(e -> {    // Menambah barang baru ke DataStore
             DataStore.daftarBarang.add(new Barang(tfNama.getText(), Double.parseDouble(tfHarga.getText()), Integer.parseInt(tfStok.getText())));
-            show(stage);
+            show(stage); // Refresh
         });
 
         Button btnSortStokKcl = new Button("Sort Stok (Kecil-Besar)");
