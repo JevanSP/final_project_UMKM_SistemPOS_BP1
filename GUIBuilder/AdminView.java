@@ -24,7 +24,7 @@ public class AdminView {
         });
 
         // Menghapus barang dari DataStore
-        Button btnHapus = new Button("Hapus Barang"); btnHapus.setStyle("-fx-background-color: #ff69b4;");
+        Button btnHapus = new Button("Hapus Barang (index)"); btnHapus.setStyle("-fx-background-color: #ff69b4;");
         btnHapus.setOnAction(e -> {    // Menghapus barang dari DataStore berdasarkan nama barang 
             int index = DataStore.cariBarang(tfNama.getText());
             if (index != -1) {

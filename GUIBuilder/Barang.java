@@ -15,7 +15,7 @@ public class Barang {
         this.stok = stok;
         this.terjual = 0;
     }
-     // Override toString untuk menampilkan di ComboBox pada KasirView dan ListView pada AdminView
+     // Override toString untuk menampilkan di ComboBox pada KasirView() dan ListView dari AdminView()
     @Override 
     public String toString() 
     { return nama + " - Rp" + harga + " (Stok: " + stok + ")"; }
