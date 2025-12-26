@@ -19,14 +19,14 @@ public class KasirView {
         tfQty.setPromptText("Jumlah Beli");         
         TextArea areaKeranjang = new TextArea();    // Menampilkan isi keranjang
         areaKeranjang.setEditable(false);
-        CheckBox cbMember = new CheckBox("Member (Diskon 10%)");    // Opsi member untuk diskon
+        CheckBox cbMember = new CheckBox("Member (Diskon 10%)");    // CheckBox member untuk diskon
 
         Button btnTambah = new Button("Tambah ke Keranjang");
         btnTambah.setOnAction(e -> {
             Barang b = cbBarang.getValue();
 
             if (b == null || tfQty.getText().isEmpty()) {
-                new Alert(Alert.AlertType.WARNING, "Pilih barang dan isi jumlah!").show();  // Validasi input kosong berupa alert
+                new Alert(Alert.AlertType.WARNING, "Pilih barang dan isi jumlah!").show();  // Validasi jika inputan pada qty kosong berupa alert warning
                 return;
             }
 
@@ -34,8 +34,12 @@ public class KasirView {
 
             if (qtyDiminta > b.stok) {
                 new Alert(Alert.AlertType.ERROR, "Stok tidak mencukupi! Sisa stok: " + b.stok).show(); // Validasi stok jika stok tidak cukup
-            } else {
-                // Update stok dan terjual
+            }
+                else if (qtyDiminta <= 0) {
+                    new Alert(Alert.AlertType.ERROR, "Jumlah beli harus lebih dari 0!").show(); // Validasi jumlah beli harus lebih dari 0
+                } 
+            else {
+                // Update stok dan terjual pada DataStore
                 b.stok -= qtyDiminta;
                 b.terjual += qtyDiminta;
 
@@ -45,6 +49,7 @@ public class KasirView {
                 areaKeranjang.appendText(b.nama + " x" + qtyDiminta + " (Rp" + (b.harga * qtyDiminta) + ")\n"); // Menampilkan di area keranjang
                 tfQty.clear();
             }
+            show(stage); // Refresh untuk update stok di ComboBox pilihan barang
         });
 
         Button btnBayar = new Button("Proses Bayar");
@@ -53,12 +58,12 @@ public class KasirView {
                 new Alert(Alert.AlertType.WARNING, "Keranjang masih kosong!").show();   // Validasi keranjang kosong 
                 return;
             }
-
+            // Hitung total bayar
             double total = 0;
             for (Barang item : keranjang) {
                 total += item.harga * item.stok; // item.stok di sini adalah qty yang dibeli
             }
-
+            // Menghitung diskon member 10% jika checkbox member dicentang
             if (cbMember.isSelected())
                 total *= 0.9;
 

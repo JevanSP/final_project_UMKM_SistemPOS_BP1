@@ -29,6 +29,6 @@ public class LoginView {
 
         root.getChildren().addAll(title, modeUser, pinField, btnLogin);
         stage.setScene(new Scene(root, 300, 250));
-        stage.show(); // Menampilkan stage
+        stage.show(); // Menampilkan stage atau window
     }
 }

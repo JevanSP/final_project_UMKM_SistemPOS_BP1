@@ -1,10 +1,14 @@
+// `Barang` class untuk merepresentasikan item barang dalam sistem inventaris
+
 public class Barang {
-    String nama;
+    // Untuk menyimpan informasi barang untuk Admin dan Kasir
+    String nama;    
     double harga;
     int stok;
-    int terjual; // Untuk laporan Owner
+    // Untuk laporan Owner
+    int terjual; 
 
-    // Konstruktor
+    // Konstruktor untuk inisialisasi barang baru
     public Barang(String nama, double harga, int stok) {
         this.nama = nama;
         this.harga = harga;
@@ -13,5 +17,6 @@ public class Barang {
     }
      // Override toString untuk menampilkan di ComboBox pada KasirView dan ListView pada AdminView
     @Override 
-    public String toString() { return nama + " - Rp" + harga + " (Stok: " + stok + ")"; }
+    public String toString() 
+    { return nama + " - Rp" + harga + " (Stok: " + stok + ")"; }
 }
